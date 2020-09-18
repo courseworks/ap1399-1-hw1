@@ -56,8 +56,11 @@ Your output should look like this...
 
 # Predictor Function
 We assume that each student's passing probability is a non-linear function of his/her features. First of all, we make a linear combination of the i-th student's features, as the following.
+
 <img src="stuff/F2.png" width="300" />
+
 This number can be anything from -infinity to +infinity. So we pass it through a nonlinear function called **sigmoid** to map it between 0 and 1 (So that it can represent a probability!). Just like below.
+
 <img src="stuff/F3.png" width="300" />
 
 Isn't it beautiful? So implement the **h** function to predict a students probability of passing, based on his/her features just like what we discussed above.
@@ -68,14 +71,19 @@ double h(std::vector<double> features, std::vector<double> w);
 
 # Cost Function
 We must measure how good are our weights (w vector) in case of predicting passing status of all the students. So we define the following function, called **loss function** for the i-th student as
+
 <img src="stuff/F4.png" width="800" />
+
 Note that the closer our probability to the truth, the lower this function. For example, if the student hasn't passed the course and we predict the probability of passing for he/she as 0.1, then the loss function for him or her would be
+
 <img src="stuff/F5.png" width="200" />
 
 But, if we had predicted 0.9 as the probability, the loss function would be
+
 <img src="stuff/F6.png" width="200" />
 
 To better judge our predictions, it's not enough to see how well we are doing on just one student. We must see how well we are predicting, regarding *all* or *some* of the students. Now we define the following function, called **cost function** as
+
 <img src="stuff/F7.png" width="150" />
 
 Note that this function is just a simple average of loss functions of a bunch of students.
@@ -86,14 +94,18 @@ double J(std::vector<std::vector<double>> data, std::vector<size_t> indices, std
 
 # Finding Appropriate Weights
 It suffices now to find the weights that minimize the cost function so that we can hope to have a good estimator! As you now, to minimize a function, we can start from an arbitrary point and in each step, go in the opposite direction of the gradient at that point. The final formula to update the weights at each iteration is
+
 <img src="stuff/F8.png" width="400" />
+
 (The theoretical stuff of how to derive this formula would be discussed in the last part of TA class for those who love math).
 First of all, we have the **fitOneEpoch** function. This function's prototype is
 ```c++
 std::vector<double> fitOneEpoch(std::vector<std::vector<double>> data, std::vector<double> w0, double lr= 0.01, size_t batch_size= 8);
 ```
 It divides data into batches of *batch_size* length. Although it's not theoretically correct in general, but for the sake of simplicity, divide data in sequential order. For example, if *batch_size* is 8, you take the first 8 students into the first batch, the second 8 students into the second batch and so on. Then you do the following update for each batch. 
+
 <img src="stuff/F9.png" width="400" />
+
 Whenever you do the update for all batches, we say that **you have trained one epoch**. This function finally returns the new (updated) weights.
 
 Now implement the **fit** function to above job, several epochs. 
@@ -101,6 +113,7 @@ Now implement the **fit** function to above job, several epochs.
 std::vector<double> fit(std::vector<std::vector<double>> data, std::vector<double> w0, double lr= 0.01, size_t epochs=10, size_t batch_size= 8, bool verbose=false);
 ```
 In the case of verbose being **true**, you must display the cost function in each epoch in an appropriate way like the below.
+
 <img src="stuff/F10.png" width="200" />
 
 If verbose if **false**, just print the the first and the final cost functions.
