@@ -1,6 +1,6 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -I h -I /usr/local/include/gtest/ -c
-LXXFLAGS = -std=c++17 -Ih -pthread
+CXXFLAGS = -std=c++2a -Wall -I h -I /usr/local/include/gtest/ -c
+LXXFLAGS = -std=c++2a -Ih -pthread
 OBJECTS = ./obj/aphw1.o ./obj/main.o ./obj/aphw1_unittest.o
 GTEST = /usr/local/lib/libgtest.a
 TARGET = main
