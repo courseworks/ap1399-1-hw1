@@ -122,7 +122,7 @@ If verbose if **false**, just print the the first and the final cost functions.
 Almost done! Just implement the ```predict``` function with the following prototype
 
 ```c++
-std::vector<double> predict(std::vector<std::vector<double>> data, std::vector<double> w, bool verbose);
+std::vector<double> predict(std::vector<std::vector<double>> data, std::vector<double> w, bool verbose=false);
 ```
 It gets a dataset and some weights. It then, calculates the probability of passing for each student in the dataset and return the results as a vector. If verbose is **true**, it shows the real results and predictions for each student in a beautiful table.
 
